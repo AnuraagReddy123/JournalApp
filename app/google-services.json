@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "488345090321",
+    "project_id": "journal-dfd3d",
+    "storage_bucket": "journal-dfd3d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488345090321:android:082fc531f400893e22f4b0",
+        "android_client_info": {
+          "package_name": "com.blueticks.journal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488345090321-oe8vmdlotctqkcvallh0iq983c2grfdp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgX7NUjh49FBlEDyvs1nE52-oGcH2jysw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488345090321-oe8vmdlotctqkcvallh0iq983c2grfdp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
