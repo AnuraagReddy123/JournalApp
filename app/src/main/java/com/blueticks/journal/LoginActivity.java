@@ -6,10 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 
 public class LoginActivity extends AppCompatActivity {
-    Button loginButton;
-    Button createButton;
+    private Button loginButton;
+    private Button createButton;
+    private EditText emailEditText;
+    private EditText passwordEditText;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
