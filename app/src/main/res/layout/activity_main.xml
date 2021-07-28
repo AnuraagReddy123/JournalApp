@@ -47,5 +47,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/get_started_text"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+        style="@style/Widget.MaterialComponents.Button.TextButton"/>
 </LinearLayout>

@@ -43,7 +43,6 @@
         <Button
             android:id="@+id/email_sign_in_button"
             android:text="@string/login_text"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -53,6 +52,13 @@
             android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:text="@string/or_text"/>
+
+        <Button
+            android:id="@+id/create_acct_button"
+            android:text="@string/create_text"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 </LinearLayout>
