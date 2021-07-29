@@ -18,6 +18,7 @@
             style="@android:style/Widget.Material.ProgressBar.Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:visibility="gone" />
 
         <LinearLayout
@@ -41,7 +42,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="@string/password_hint"
-                android:hintTextColor="#757575"
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
                 android:maxLines="1"
