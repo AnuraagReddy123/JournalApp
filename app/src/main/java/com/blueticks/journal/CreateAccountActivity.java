@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -61,6 +62,12 @@ public class CreateAccountActivity extends AppCompatActivity {
         createButton = findViewById(R.id.create_acct_button);
         progressBar = findViewById(R.id.create_acct_progress);
         emailLayout = findViewById(R.id.acct_login_form);
+
+        getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+        );
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
 
         authStateListener = firebaseAuth -> {
             currentUser = firebaseAuth.getCurrentUser();
