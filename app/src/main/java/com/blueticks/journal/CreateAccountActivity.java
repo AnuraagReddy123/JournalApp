@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     private EditText passwordEditText;
     private Button createButton;
     private ProgressBar progressBar;
+    private LinearLayout emailLayout;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
@@ -58,6 +60,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.password_account);
         createButton = findViewById(R.id.create_acct_button);
         progressBar = findViewById(R.id.create_acct_progress);
+        emailLayout = findViewById(R.id.acct_login_form);
 
         authStateListener = firebaseAuth -> {
             currentUser = firebaseAuth.getCurrentUser();
@@ -88,6 +91,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     private void createUserEmailAccount(String email, String password, String username) {
         if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(username)) {
+            emailLayout.setVisibility(View.GONE);
             progressBar.setVisibility(View.VISIBLE);
 
             mAuth.createUserWithEmailAndPassword(email, password)
