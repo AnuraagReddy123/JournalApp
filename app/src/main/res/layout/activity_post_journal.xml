@@ -42,7 +42,7 @@
 
         <TextView
             android:id="@+id/post_username_textview"
-            android:layout_width="106dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Anuraag"
             android:textSize="24sp"
