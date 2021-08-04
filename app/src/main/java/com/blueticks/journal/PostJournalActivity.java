@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -24,14 +25,20 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.Date;
+
+import model.Journal;
 import util.JournalApi;
 
 public class PostJournalActivity extends AppCompatActivity implements View.OnClickListener {
     private static final int GALLERY_CODE = 1;
+    private static final String TAG = "PostJournalActivity";
     private Button saveButton;
     private ProgressBar progressBar;
     private ImageView addPhotoButton;
@@ -66,6 +73,7 @@ public class PostJournalActivity extends AppCompatActivity implements View.OnCli
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference();
 
         progressBar = findViewById(R.id.post_progressbar);
         currentUserTextView = findViewById(R.id.post_username_textview);
@@ -150,18 +158,55 @@ public class PostJournalActivity extends AppCompatActivity implements View.OnCli
         if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(thoughts) && imageUri != null) {
             StorageReference filePath = storageReference
                     .child("journal_images")
-                    .child("my_image_"+ Timestamp.now().getSeconds());
+                    .child("my_image_" + Timestamp.now().getSeconds());
 
             filePath.putFile(imageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            progressBar.setVisibility(View.GONE);
-                            postJournalLayout.setVisibility(View.VISIBLE);
+                            filePath.getDownloadUrl()
+                                    .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            String imageUrl = uri.toString();
 
-                            // Todo: create a Journaal Object
-                            // Todo: Invoke our CollectionReference
-                            // Todo: and save a journal instance
+                                            // Todo: create a Journal Object
+                                            Journal journal = new Journal();
+                                            journal.setTitle(title);
+                                            journal.setThoughts(thoughts);
+                                            journal.setImageUrl(imageUrl);
+                                            journal.setTimeAdded(new Timestamp(new Date()));
+                                            journal.setUserName(currentUserName);
+                                            journal.setUserId(currentUserId);
+
+                                            // Todo: Invoke our CollectionReference
+                                            collectionReference.add(journal)
+                                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                        @Override
+                                                        public void onSuccess(DocumentReference documentReference) {
+                                                            progressBar.setVisibility(View.GONE);
+                                                            startActivity(new Intent(PostJournalActivity.this,
+                                                                    JournalListActivity.class));
+                                                            finish();
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Log.d(TAG, "onFailure: " + e.getMessage());
+                                                        }
+                                                    });
+                                            // Todo: and save a journal instance
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+
+                                        }
+                                    });
+
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

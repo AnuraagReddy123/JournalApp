@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Journal">
         <activity
+            android:name=".JournalListActivity"
+            android:exported="true" />
+        <activity
             android:name=".PostJournalActivity"
             android:exported="true" />
         <activity android:name=".CreateAccountActivity" />
