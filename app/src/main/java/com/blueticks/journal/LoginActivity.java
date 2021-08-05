@@ -117,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
                                                         journalApi.setUserId(snapshot.getString("userId"));
 
                                                         progressBar.setVisibility(View.GONE);
-                                                        startActivity(new Intent(LoginActivity.this, PostJournalActivity.class));
+                                                        startActivity(new Intent(LoginActivity.this, JournalListActivity.class));
                                                     }
                                                 }
                                             }

@@ -14,4 +14,9 @@
     <string name="save_text">Save</string>
     <string name="menu_title">Add Thoughts</string>
     <string name="signout">Signout</string>
+    <string name="no_thoughts">Write a Journal Entry by clicking the \"+\" icon</string>
+    <string name="placeholder_title">Title</string>
+    <string name="placeholder_thoughts">Thoughts</string>
+    <string name="placeholder_date">Date Created</string>
+    <string name="journal_image">journalImage</string>
 </resources>
