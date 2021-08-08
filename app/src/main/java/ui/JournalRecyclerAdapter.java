@@ -1,10 +1,12 @@
 package ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,7 +44,7 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
 
         holder.title.setText(journal.getTitle());
         holder.thoughts.setText(journal.getThoughts());
-//        holder.name.setText(journal.getUserName());
+        holder.name.setText(journal.getUserName());
         imageUrl = journal.getImageUrl();
         String timeAgo = (String) DateUtils.getRelativeTimeSpanString(journal.getTimeAdded().getSeconds() * 1000);
 
@@ -71,6 +73,7 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
         public ImageView image;
         String userId;
         String userName;
+        public ImageButton shareBtn;
         public ViewHolder(@NonNull View itemView, Context ctx) {
             super(itemView);
             context = ctx.getApplicationContext();
@@ -79,7 +82,15 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
             thoughts = itemView.findViewById(R.id.journal_thoughts_list);
             dateAdded = itemView.findViewById(R.id.journal_timestamp_list);
             image = itemView.findViewById(R.id.journal_image_list);
-//            name = itemView.findViewById(R.id.username_account);
+            name = itemView.findViewById(R.id.journal_row_username);
+
+            shareBtn = itemView.findViewById(R.id.journal_row_share_button);
+            shareBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    ctx.startActivity(new Intent());
+                }
+            });
         }
     }
 }

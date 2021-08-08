@@ -19,4 +19,6 @@
     <string name="placeholder_thoughts">Thoughts</string>
     <string name="placeholder_date">Date Created</string>
     <string name="journal_image">journalImage</string>
+    <string name="placeholder_name">Anuraag</string>
+    <string name="share_button">Share Button</string>
 </resources>
